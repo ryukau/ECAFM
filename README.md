@@ -2,7 +2,7 @@
 Elementary Cellular Automatonを利用したFMシンセサイザ。
 
 ## 使い方
-Randomボタンを押していい感じの音が見つかったらSaveボタンを押してwavを保存できる。
+Randomボタンを押して音を探す。気に入った音はSaveボタンで保存できる。
 保存先はECAFMと同じディレクトリに作られるrenderディレクトリ。
 
 Duration、MaxStepの値で音の長さ、Pitchの値で音の高さ、Ratio、Harmonicsで音の質感を変更できる。
