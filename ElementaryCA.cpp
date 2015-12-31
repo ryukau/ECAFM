@@ -3,11 +3,14 @@
 #include <cmath>
 #include <algorithm>
 #include <random>
+#include "utils.h"
+
 
 ElementaryCA::ElementaryCA()
     : rule(30)
 {
     setSize(16);
+    setSmoothTime(5.0f);
     init(0);
 }
 
@@ -25,11 +28,20 @@ void ElementaryCA::setSize(int n)
 {
     cell.resize(n);
     backcell.resize(n);
+    gain.resize(n);
 }
 
 void ElementaryCA::setRule(int r)
 {
     rule = r;
+}
+
+void ElementaryCA::setSmoothTime(float msec)
+{
+    if (1e-20 < msec)
+        steepness = 1000.0f / (msec * SampleRate::get());
+    else
+        steepness = 1.0;
 }
 
 void ElementaryCA::init(int seed)
@@ -59,6 +71,22 @@ bool ElementaryCA::at(int index)
         i = static_cast<int>(cell.size()) - i;
 
     return cell[i];
+}
+
+float ElementaryCA::gainAt(int index)
+{
+    if (cell[index])
+    {
+        gain[index] = std::min(gain[index] + steepness, 1.0f);
+        //gain[index] = 1.0f;
+    }
+    else
+    {
+        gain[index] = std::max(gain[index] - steepness, 0.0f);
+        //gain[index] = 0.0f;
+    }
+
+    return gain[index];
 }
 
 int ElementaryCA::mmod(int i)

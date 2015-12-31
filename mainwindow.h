@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include <vector>
 #include "soundplayer.h"
 #include "ElementaryCA.h"
 
@@ -31,6 +32,8 @@ private slots:
 
     void on_pushButtonRandom_clicked();
 
+    void on_spinBoxSmooth_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -50,8 +53,7 @@ private:
     void playSound();
     void renderSound();
     int getNumberOfSamples();
-
-    void setEcaSize(int s);
+    void ecaResize(int size);
 };
 
 #endif // MAINWINDOW_H

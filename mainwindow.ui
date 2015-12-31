@@ -24,10 +24,30 @@
        <string>Synth</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Duration(msec/step)</string>
+          <string>Ratio</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBoxRatio">
+         <property name="maximum">
+          <double>64.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.050000000000000</double>
+         </property>
+         <property name="value">
+          <double>3.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Harmonics</string>
          </property>
         </widget>
        </item>
@@ -44,6 +64,13 @@
          </property>
          <property name="value">
           <number>50</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Duration(msec/step)</string>
          </property>
         </widget>
        </item>
@@ -87,31 +114,58 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_4">
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_7">
          <property name="text">
-          <string>Ratio</string>
+          <string>Seed</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="doubleSpinBoxRatio">
-         <property name="maximum">
-          <double>64.000000000000000</double>
+       <item row="7" column="1">
+        <widget class="QSpinBox" name="spinBoxRule">
+         <property name="minimum">
+          <number>0</number>
          </property>
-         <property name="singleStep">
-          <double>0.050000000000000</double>
+         <property name="maximum">
+          <number>255</number>
          </property>
          <property name="value">
-          <double>3.000000000000000</double>
+          <number>30</number>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_3">
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>Harmonics</string>
+          <string>Rule</string>
          </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QSpinBox" name="spinBoxSeed">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QComboBox" name="comboBoxHarmoType">
+         <item>
+          <property name="text">
+           <string>Hard</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Soft</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="4" column="1">
@@ -134,57 +188,20 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QComboBox" name="comboBoxHarmoType">
-         <item>
-          <property name="text">
-           <string>Hard</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Soft</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="6" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="label_9">
          <property name="text">
-          <string>Rule</string>
+          <string>Smooth(msec)</string>
          </property>
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QSpinBox" name="spinBoxRule">
-         <property name="minimum">
-          <number>0</number>
-         </property>
+        <widget class="QSpinBox" name="spinBoxSmooth">
          <property name="maximum">
-          <number>255</number>
+          <number>100</number>
          </property>
          <property name="value">
-          <number>30</number>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Seed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QSpinBox" name="spinBoxSeed">
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>65535</number>
-         </property>
-         <property name="value">
-          <number>0</number>
+          <number>2</number>
          </property>
         </widget>
        </item>

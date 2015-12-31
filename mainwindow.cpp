@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <algorithm>
 #include <cmath>
 #include <random>
 #include <QElapsedTimer>
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ecaResize(16);
 
     setupWaveforms();
 }
@@ -80,8 +83,13 @@ void MainWindow::on_pushButtonSave_clicked()
 
 void MainWindow::on_spinBoxHarmonics_valueChanged(int arg1)
 {
-    ecaCar.setSize(arg1);
-    ecaMod.setSize(arg1);
+    ecaResize(arg1);
+}
+
+void MainWindow::on_spinBoxSmooth_valueChanged(int arg1)
+{
+    ecaCar.setSmoothTime(static_cast<float>(arg1));
+    ecaMod.setSmoothTime(static_cast<float>(arg1));
 }
 
 void MainWindow::on_spinBoxRule_valueChanged(int arg1)
@@ -168,8 +176,7 @@ float MainWindow::harmoTone(float phase, ElementaryCA& eca)
     {
         for (int i = 0; i < harmonics; ++i)
         {
-            if (eca.at(i))
-                temp += sinf(phase * i);
+            temp += eca.gainAt(i) * sinf(phase * i);
         }
         return temp / harmonics;
     }
@@ -177,8 +184,7 @@ float MainWindow::harmoTone(float phase, ElementaryCA& eca)
     {
         for (int i = 0; i < harmonics; ++i)
         {
-            if (eca.at(i))
-                temp += pow(0.5f, i) * sinf(phase * i);
+            temp += pow(0.5f, i) * eca.gainAt(i) * sinf(phase * i);
         }
         return temp * 0.5;
     }
@@ -190,4 +196,10 @@ int MainWindow::getNumberOfSamples()
 {
     double msec = static_cast<double>(ui->spinBoxDuration->value() * ui->spinBoxMaxStep->value()) * 0.001;
     return static_cast<int>(msec * SampleRate::get());
+}
+
+void MainWindow::ecaResize(int size)
+{
+    ecaCar.setSize(size);
+    ecaMod.setSize(size);
 }
