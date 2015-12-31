@@ -51,6 +51,9 @@ void ElementaryCA::init(int seed)
 
     for (auto &it : cell)
         it = dist(mt) == 0 ? false : true;
+
+    for (auto &it : gain)
+        it = 0.0f;
 }
 
 void ElementaryCA::next()
