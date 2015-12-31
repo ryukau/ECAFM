@@ -1,5 +1,5 @@
 # ECAFM
-Elementary Cellular Automatonを利用したFMシンセサイザ。
+Elementary Cellular Automatonを利用したFMシンセサイザ。Qt5.5を使用。
 
 ## 使い方
 Randomボタンを押して音を探すことができる。気に入った音はSaveボタンで保存できる。
@@ -42,6 +42,9 @@ Pitchから基音を設定、倍音をHarmonicsの数だけ用意。
 倍音の足し合わせ方。n番目の倍音の音量について、
 - Hard: 1.0
 - Soft: 0.5^n
+
+### Smooth(msec)
+ステップ間のスムーシング。値を増やすと、音の変化がより緩やかになる。
 
 ### Rule
 Elementary CAのルール。
