@@ -165,6 +165,20 @@ void MainWindow::renderSound()
             ecaCar.next();
         }
     }
+
+    declick();
+}
+
+void MainWindow::declick()
+{
+    const int declickTime = 0.005f * SampleRate::get();
+    const float cc = 1.0f / declickTime;
+
+    for (int i = 1; i < declickTime; ++i)
+    {
+        int index = waveSound.size() - i;
+        waveSound[index] = i * cc * waveSound[index];
+    }
 }
 
 float MainWindow::harmoTone(float phase, ElementaryCA& eca)

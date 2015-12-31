@@ -52,6 +52,7 @@ private:
     void saveSound();
     void playSound();
     void renderSound();
+    void declick();
     int getNumberOfSamples();
     void ecaResize(int size);
 };
