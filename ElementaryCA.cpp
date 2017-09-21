@@ -1,10 +1,9 @@
 ﻿#include "ElementaryCA.h"
 
-#include <cmath>
-#include <algorithm>
-#include <random>
 #include "utils.h"
-
+#include <algorithm>
+#include <cmath>
+#include <random>
 
 ElementaryCA::ElementaryCA()
     : rule(30)
@@ -16,7 +15,6 @@ ElementaryCA::ElementaryCA()
 
 ElementaryCA::~ElementaryCA()
 {
-
 }
 
 size_t ElementaryCA::size()
@@ -49,10 +47,10 @@ void ElementaryCA::init(int seed)
     std::mt19937 mt(seed);
     std::uniform_int_distribution<short> dist(0, 1);
 
-    for (auto &it : cell)
-        it = dist(mt) == 0 ? false : true;
+    for (uint n = 0; n < cell.size(); ++n)
+        cell[n] = (dist(mt) == 0) ? false : true;
 
-    for (auto &it : gain)
+    for (auto& it : gain)
         it = 0.0f;
 }
 
@@ -60,8 +58,7 @@ void ElementaryCA::next()
 {
     std::copy(cell.begin(), cell.end(), backcell.begin());
 
-    for (int n = 0; n < cell.size(); ++n)
-    {
+    for (uint n = 0; n < cell.size(); ++n) {
         int pattern = 4 * backcell.at(mmod(n - 1)) + 2 * backcell.at(n) + backcell.at(mmod(n + 1));
         cell[n] = ((rule / (int)pow(2, pattern)) % 2) == 0 ? false : true;
     }
@@ -78,13 +75,10 @@ bool ElementaryCA::at(int index)
 
 float ElementaryCA::gainAt(int index)
 {
-    if (cell[index])
-    {
+    if (cell[index]) {
         gain[index] = std::min(gain[index] + steepness, 1.0f);
         //gain[index] = 1.0f;
-    }
-    else
-    {
+    } else {
         gain[index] = std::max(gain[index] - steepness, 0.0f);
         //gain[index] = 0.0f;
     }
@@ -99,4 +93,3 @@ int ElementaryCA::mmod(int i)
 
     return i % cell.size();
 }
-
